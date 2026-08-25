@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pokémon: Driftbound</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="app">
+  <header id="topbar">
+    <div>
+      <div class="eyebrow">LIVING TITAN EXPEDITION</div>
+      <h1>Pokémon: Driftbound</h1>
+    </div>
+    <div id="topStats"></div>
+  </header>
+
+  <main id="gameShell">
+    <section id="worldPanel" class="worldPanel">
+      <div id="world3d" class="world3d" aria-label="3D exploration world"></div>
+      <div id="worldHud" class="worldHud"></div>
+      <div id="worldPrompt" class="worldPrompt hidden"></div>
+      <div id="toast" class="toast hidden"></div>
+    </section>
+
+    <aside id="sidePanel" class="sidePanel">
+      <section class="panel objectivePanel">
+        <div class="panelHead"><span>FIELD OBJECTIVE</span><b id="objectiveRegion">—</b></div>
+        <div id="objectiveText"></div>
+      </section>
+      <section class="panel">
+        <div class="panelHead"><span>PARTY</span><b id="partyCount">0 / 6</b></div>
+        <div id="partyList" class="partyList"></div>
+      </section>
+      <section class="panel compactPanel">
+        <div class="panelHead"><span>FIELD ACTIONS</span></div>
+        <div class="sideButtons">
+          <button id="atlasBtn">Living Atlas</button>
+          <button id="notesBtn">Field Notes</button>
+          <button id="bagBtn">Bag</button>
+          <button id="storageBtn">Reserve</button>
+          <button id="soundBtn">Sound: On</button>
+          <button id="saveBtn">Save</button>
+        </div>
+      </section>
+    </aside>
+  </main>
+</div>
+
+<div id="modal" class="modal hidden" role="dialog" aria-modal="true">
+  <div id="modalCard" class="modalCard"></div>
+</div>
+
+<script src="assets/vendor/three.min.js"></script>
+<script src="world3d.js"></script>
+<script src="game.js"></script>
+</body>
+</html>
