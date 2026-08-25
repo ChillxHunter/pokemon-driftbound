@@ -31,6 +31,9 @@ jobs:
           if [ -d updates ]; then
             cp -a updates/. _site/
           fi
+          python3 deploy/apply_v89.py _site
+          node --check _site/game.js
+          node --check _site/movement_patch.js
           touch _site/.nojekyll
           test -f _site/index.html
 
