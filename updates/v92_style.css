@@ -1,0 +1,7 @@
+/* Pokémon: Driftbound v92 — classic grass encounter transition + polish */
+#worldFrame{isolation:isolate}
+#worldFrame::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:0;z-index:7;background:radial-gradient(circle at 50% 50%,rgba(255,255,255,.88) 0 6%,rgba(154,213,104,.36) 18%,rgba(27,89,48,.16) 42%,rgba(5,20,15,0) 70%);transform:scale(.82)}
+#worldFrame.grassEncounter::after{animation:v92GrassEncounter .5s ease-out both}
+@keyframes v92GrassEncounter{0%{opacity:0;transform:scale(.78)}30%{opacity:1;transform:scale(1.06)}100%{opacity:0;transform:scale(1.28)}}
+.controlHint .key{min-width:28px;text-align:center}
+.interactionHint{font-size:11px;letter-spacing:.11em}
