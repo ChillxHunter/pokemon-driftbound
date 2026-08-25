@@ -6,177 +6,56 @@
   <meta name="theme-color" content="#092f38">
   <title>Pokémon: Driftbound</title>
   <link rel="stylesheet" href="style.css?v=capture-throw-86">
+  <link rel="stylesheet" href="classic_region.css?v=region-90">
 </head>
 <body>
   <div id="boot" class="bootScreen">
-    <div class="bootOcean" aria-hidden="true">
-      <i></i><i></i><i></i><i></i>
-    </div>
+    <div class="bootOcean" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
     <section class="titleCard">
       <div class="eyebrow">A LIVING-REGION ADVENTURE</div>
       <h1><span>Pokémon</span> Driftbound</h1>
-      <p class="titleLead">The islands are alive. The routes migrate. Every species remembers what you do.</p>
-      <div id="bootActions" class="titleActions">
-        <button id="newGame" class="primaryButton">Begin Expedition</button>
-        <button id="continueGame" class="secondaryButton hidden">Continue</button>
-      </div>
-      <div class="titleFeatures">
-        <span>12 escalating surveys</span><span>Seeded campaign route</span><span>Renewable field supplies</span><span>Save-born adaptations</span>
-      </div>
+      <p class="titleLead">Explore Asterra: a full region of towns, routes, caves, eight Gyms, and the Pokémon League.</p>
+      <div id="bootActions" class="titleActions"><button id="newGame" class="primaryButton">Begin Expedition</button><button id="continueGame" class="secondaryButton hidden">Continue</button></div>
+      <div class="titleFeatures"><span>8 Gym challenge</span><span>Towns and routes</span><span>TMs and HMs</span><span>Elite Four + Champion</span></div>
       <small>Non-commercial fan prototype · Saves automatically in this browser</small>
     </section>
   </div>
 
   <div id="gameApp" class="gameApp hidden">
     <header class="topBar">
-      <div class="brandBlock">
-        <span class="miniLogo">DRIFTBOUND</span>
-        <div><strong id="titanName">Verdant Crown</strong><small id="titanSubtitle">The walking woodland</small></div>
-      </div>
-      <div class="worldReadout">
-        <span class="cycleOrb" id="cycleOrb">1</span>
-        <div><small>MIGRATION CYCLE</small><strong id="cycleText">Dawn Current</strong></div>
-      </div>
-      <div class="resonanceReadout">
-        <small id="campaignProgressLabel">CAMPAIGN PROGRESS · 0/12</small>
-        <div class="resonancePips" id="resonancePips"></div>
-      </div>
-      <button id="audioButton" class="iconButton audioButton" title="Toggle music and Pokémon cries" aria-pressed="true">♫ SOUND</button>
-      <button id="saveButton" class="iconButton" title="Save game">SAVE</button>
+      <div class="brandBlock"><span class="miniLogo">DRIFTBOUND</span><div><strong id="titanName">Verdant Crown</strong><small id="titanSubtitle">The walking woodland</small></div></div>
+      <div class="worldReadout"><span class="cycleOrb" id="cycleOrb">1</span><div><small>MIGRATION CYCLE</small><strong id="cycleText">Dawn Current</strong></div></div>
+      <div class="resonanceReadout"><small id="campaignProgressLabel">CAMPAIGN PROGRESS · 0/12</small><div class="resonancePips" id="resonancePips"></div></div>
+      <button id="audioButton" class="iconButton audioButton" title="Toggle music and Pokémon cries" aria-pressed="true">♫ SOUND</button><button id="saveButton" class="iconButton" title="Save game">SAVE</button>
     </header>
-
     <main class="gameLayout">
       <section class="playColumn">
         <div id="worldFrame" class="worldFrame">
-          <canvas id="world" width="960" height="576" aria-label="Explorable world"></canvas>
-          <div id="areaBanner" class="areaBanner hidden"></div>
-          <div id="objectiveChip" class="objectiveChip"></div>
-          <aside id="tutorialCard" class="tutorialCard hidden" aria-live="polite"></aside>
-          <div id="interactionHint" class="interactionHint hidden">SPACE · INTERACT</div>
-          <div id="dialogue" class="dialogueBox hidden">
-            <div id="dialogueSpeaker" class="dialogueSpeaker"></div>
-            <div id="dialogueText" class="dialogueText"></div>
-            <div id="dialogueChoices" class="dialogueChoices"></div>
-            <button id="dialogueNext" class="dialogueNext">NEXT <span>›</span></button>
-          </div>
+          <canvas id="world" width="960" height="576" aria-label="Explorable world"></canvas><div id="areaBanner" class="areaBanner hidden"></div><div id="objectiveChip" class="objectiveChip"></div><aside id="tutorialCard" class="tutorialCard hidden" aria-live="polite"></aside><div id="interactionHint" class="interactionHint hidden">SPACE · INTERACT</div>
+          <div id="dialogue" class="dialogueBox hidden"><div id="dialogueSpeaker" class="dialogueSpeaker"></div><div id="dialogueText" class="dialogueText"></div><div id="dialogueChoices" class="dialogueChoices"></div><button id="dialogueNext" class="dialogueNext">NEXT <span>›</span></button></div>
         </div>
-
-        <div class="controlStrip">
-          <div class="controlHint"><span class="key">WASD</span><span class="key">ARROWS</span> Move <span class="key">SPACE</span> Interact</div>
-          <nav class="quickNav" aria-label="Game menus">
-            <button data-panel="bag"><span>◒</span>Bag</button>
-            <button data-panel="party"><span>◆</span>Party</button>
-            <button data-panel="atlas"><span>◎</span>Atlas</button>
-            <button data-panel="fieldnotes"><span>▤</span>Field Notes</button>
-          </nav>
-        </div>
+        <div class="controlStrip"><div class="controlHint"><span class="key">WASD</span><span class="key">ARROWS</span> Move <span class="key">SPACE</span> Interact</div><nav class="quickNav" aria-label="Game menus"><button data-panel="bag"><span>◒</span>Bag</button><button data-panel="party"><span>◆</span>Party</button><button data-panel="atlas"><span>◎</span>Atlas</button><button data-panel="fieldnotes"><span>▤</span>Field Notes</button></nav></div>
       </section>
-
       <aside class="sidePanel">
-        <section class="sideSection expeditionSection">
-          <div class="sectionLabel">ACTIVE EXPEDITION</div>
-          <h2 id="questTitle">The Heartwood Fever</h2>
-          <p id="questDescription"></p>
-          <div class="questProgress"><i id="questProgressBar"></i></div>
-          <small id="questProgressText"></small>
-          <div id="missionPlan" class="missionPlan" aria-label="Expedition plan"></div>
-          <div class="supplyBalance"><span>FIELD CREDITS</span><b id="fieldCredits">₽ 300</b><small>Spend at any Expedition Camp</small></div>
-        </section>
-
-        <section class="sideSection bondSection">
-          <div class="sectionRow"><span class="sectionLabel">TITAN BOND</span><strong id="bondLabel">CURIOUS</strong></div>
-          <div class="bondMeter"><i id="bondBar"></i></div>
-          <p id="bondReaction">The titan watches your footsteps.</p>
-        </section>
-
-        <section class="sideSection leadSection">
-          <div class="sectionRow"><span class="sectionLabel">LEAD PARTNER</span><button data-panel="party" class="textButton">CHANGE</button></div>
-          <div id="leadCard"></div>
-        </section>
-
-        <section class="sideSection pulseSection">
-          <div class="sectionRow"><span class="sectionLabel">ECOSYSTEM PULSE</span><button data-panel="fieldnotes" class="textButton">DETAILS</button></div>
-          <div id="ecosystemPulse"></div>
-        </section>
-
-        <section class="migrationTicker">
-          <span>LIVE</span><p id="migrationTicker">The Verdant Crown and Tidewhale are drawing near.</p>
-        </section>
+        <section class="sideSection expeditionSection"><div class="sectionLabel">ACTIVE EXPEDITION</div><h2 id="questTitle">The Heartwood Fever</h2><p id="questDescription"></p><div class="questProgress"><i id="questProgressBar"></i></div><small id="questProgressText"></small><div id="missionPlan" class="missionPlan" aria-label="Expedition plan"></div><div class="supplyBalance"><span>FIELD CREDITS</span><b id="fieldCredits">₽ 300</b><small>Spend at any Expedition Camp</small></div></section>
+        <section class="sideSection bondSection"><div class="sectionRow"><span class="sectionLabel">TITAN BOND</span><strong id="bondLabel">CURIOUS</strong></div><div class="bondMeter"><i id="bondBar"></i></div><p id="bondReaction">The titan watches your footsteps.</p></section>
+        <section class="sideSection leadSection"><div class="sectionRow"><span class="sectionLabel">LEAD PARTNER</span><button data-panel="party" class="textButton">CHANGE</button></div><div id="leadCard"></div></section>
+        <section class="sideSection pulseSection"><div class="sectionRow"><span class="sectionLabel">ECOSYSTEM PULSE</span><button data-panel="fieldnotes" class="textButton">DETAILS</button></div><div id="ecosystemPulse"></div></section>
+        <section class="migrationTicker"><span>LIVE</span><p id="migrationTicker">The Verdant Crown and Tidewhale are drawing near.</p></section>
       </aside>
     </main>
-
-    <div class="mobilePad" aria-label="Touch controls">
-      <button data-move="up">▲</button>
-      <button data-move="left">◀</button>
-      <button data-action="interact">A</button>
-      <button data-move="right">▶</button>
-      <button data-move="down">▼</button>
-    </div>
+    <div class="mobilePad" aria-label="Touch controls"><button data-move="up">▲</button><button data-move="left">◀</button><button data-action="interact">A</button><button data-move="right">▶</button><button data-move="down">▼</button></div>
   </div>
 
-  <div id="battleTransition" class="battleTransition hidden" aria-hidden="true">
-    <div class="battleTransitionBurst"></div>
-    <div class="battleTransitionSlash"></div>
-    <strong id="battleTransitionText">WILD ENCOUNTER</strong>
-  </div>
-
+  <div id="battleTransition" class="battleTransition hidden" aria-hidden="true"><div class="battleTransitionBurst"></div><div class="battleTransitionSlash"></div><strong id="battleTransitionText">WILD ENCOUNTER</strong></div>
   <section id="battleScreen" class="battleScreen hidden" aria-label="Pokémon battle">
     <button id="battleAudioButton" class="battleAudioButton" type="button" title="Toggle music and Pokémon cries" aria-pressed="true">♫</button>
-    <div id="battleStage" class="battleStage battleShell">
-      <div class="battleBody">
-        <div id="battleScene" class="battleScene">
-          <img id="battleBackdrop" class="battleBackdrop" alt="">
-          <div class="battleShade"></div>
-          <div id="weatherLayer" class="weatherLayer"></div>
-          <div class="enemyPlatform"></div>
-          <div class="playerPlatform"></div>
-
-          <div class="combatant enemyCombatant">
-            <div id="enemyInfo" class="battleInfo"></div>
-            <button id="inspectEnemy" class="spriteInspect" title="Study this Pokémon">
-              <img id="enemySprite" alt="Wild Pokémon">
-              <span id="adaptedEnemyBadge" class="adaptedBadge hidden">ADAPTED</span>
-            </button>
-          </div>
-          <div class="combatant playerCombatant">
-            <button id="inspectPlayer" class="spriteInspect" title="Inspect your partner"><img id="playerSprite" alt="Your Pokémon"></button>
-            <div id="playerInfo" class="battleInfo"></div>
-          </div>
-
-          <div class="battlePrompt battlePromptInScene"><span>✦</span><div id="battleMessage" class="battleMessage"></div><small id="battleFieldSummary">Clear field</small></div>
-          <div id="battleFx" class="battleFx"></div>
-        </div>
-        <aside class="battleLogPanel">
-          <div class="battleLogHead"><div><span>BATTLE LOG</span><b>Wild encounter</b></div><button id="clearBattleLog" type="button">Clear</button></div>
-          <div class="battleLogScroll"><div id="battleLog" class="battleLog"></div></div>
-          <div class="battleLogTip">Damage, critical hits, study notes, EXP and turn results appear here.</div>
-        </aside>
-      </div>
-      <div id="battleControls" class="battleControls"></div>
-    </div>
+    <div id="battleStage" class="battleStage battleShell"><div class="battleBody"><div id="battleScene" class="battleScene"><img id="battleBackdrop" class="battleBackdrop" alt=""><div class="battleShade"></div><div id="weatherLayer" class="weatherLayer"></div><div class="enemyPlatform"></div><div class="playerPlatform"></div><div class="combatant enemyCombatant"><div id="enemyInfo" class="battleInfo"></div><button id="inspectEnemy" class="spriteInspect" title="Study this Pokémon"><img id="enemySprite" alt="Wild Pokémon"><span id="adaptedEnemyBadge" class="adaptedBadge hidden">ADAPTED</span></button></div><div class="combatant playerCombatant"><button id="inspectPlayer" class="spriteInspect" title="Inspect your partner"><img id="playerSprite" alt="Your Pokémon"></button><div id="playerInfo" class="battleInfo"></div></div><div class="battlePrompt battlePromptInScene"><span>✦</span><div id="battleMessage" class="battleMessage"></div><small id="battleFieldSummary">Clear field</small></div><div id="battleFx" class="battleFx"></div></div><aside class="battleLogPanel"><div class="battleLogHead"><div><span>BATTLE LOG</span><b>Wild encounter</b></div><button id="clearBattleLog" type="button">Clear</button></div><div class="battleLogScroll"><div id="battleLog" class="battleLog"></div></div><div class="battleLogTip">Damage, critical hits, study notes, EXP and turn results appear here.</div></aside></div><div id="battleControls" class="battleControls"></div></div>
   </section>
 
-  <div id="panelOverlay" class="panelOverlay hidden">
-    <section id="panelCard" class="panelCard"></section>
-  </div>
-
-  <div id="starterOverlay" class="starterOverlay hidden">
-    <section class="starterCard">
-      <div class="starterIntro">
-        <span class="eyebrow">EXPEDITION REGISTRY</span>
-        <h2>Choose your first partner</h2>
-        <p>This partner stays with you across the whole living region. There are no runs and no resets.</p>
-      </div>
-      <div id="starterChoices" class="starterChoices"></div>
-    </section>
-  </div>
-
+  <div id="panelOverlay" class="panelOverlay hidden"><section id="panelCard" class="panelCard"></section></div>
+  <div id="starterOverlay" class="starterOverlay hidden"><section class="starterCard"><div class="starterIntro"><span class="eyebrow">EXPEDITION REGISTRY</span><h2>Choose your first partner</h2><p>Choose the partner that will begin your journey across the Asterra Region.</p></div><div id="starterChoices" class="starterChoices"></div></section></div>
   <div id="toast" class="toast hidden"></div>
-  <script src="assets/vendor/three.min.js"></script>
-  <script src="assets/trainer/calem_model_data.js"></script>
-  <script src="assets/audio/moves/overrides.js"></script>
-  <script src="world3d.js?v=capture-throw-86"></script>
-  <script src="movement_patch.js?v=movement-88"></script>
-  <script src="game.js?v=capture-throw-86"></script>
+  <script src="assets/vendor/three.min.js"></script><script src="assets/trainer/calem_model_data.js"></script><script src="assets/audio/moves/overrides.js"></script><script src="world3d.js?v=capture-throw-86"></script><script src="classic_world_patch.js?v=region-90"></script><script src="movement_patch.js?v=movement-89"></script><script src="game.js?v=movement-89"></script><script src="classic_region_part1.js?v=region-90"></script><script src="classic_region_part2.js?v=region-90"></script><script src="classic_region_part3.js?v=region-90"></script><script src="classic_region_part4.js?v=region-90"></script><script src="classic_region_part5.js?v=region-90"></script>
 </body>
 </html>
