@@ -1,0 +1,7 @@
+/* Driftbound v90 traditional-region additions — preserve existing UI language. */
+.classicBagSection{margin:0 0 24px}.classicBagSection>h3{margin:0 0 10px;padding:0 0 8px;border-bottom:1px solid #b9c8bd;color:#153740;font-size:14px;letter-spacing:.08em}
+.regionMapGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;max-height:65vh;overflow:auto;padding:4px 6px 12px 2px}
+.regionMapNode{min-height:104px;padding:13px;border:2px solid #6c8c91;border-radius:14px;background:linear-gradient(180deg,#f8f8e9,#e8f2e4);color:#16343a;text-align:left;box-shadow:0 4px 0 #315b63;display:flex;flex-direction:column;gap:5px;justify-content:center}
+.regionMapNode:hover:not(:disabled){transform:translateY(-1px);box-shadow:0 5px 0 #315b63}.regionMapNode.current{border-color:#e0b64c;box-shadow:0 0 0 3px #f5dc7b inset,0 4px 0 #7d692f}.regionMapNode:disabled{opacity:.34;filter:grayscale(.8)}
+.regionMapNode b{font-size:13px}.regionMapNode small{font-size:10px;color:#526b69}.regionMapNode em{font-style:normal;font-size:9px;color:#997421;font-weight:800;letter-spacing:.06em}
+@media(max-width:900px){.regionMapGrid{grid-template-columns:repeat(2,minmax(0,1fr))}}
