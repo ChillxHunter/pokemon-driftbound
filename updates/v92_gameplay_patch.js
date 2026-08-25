@@ -123,7 +123,7 @@
     const species=weightedWild(area);if(!species)return;
     S.grassEncounterMeter=.06;S.grassEncounterCooldown=4;inputLocked=true;
     const frame=document.getElementById('worldFrame');if(frame){frame.classList.remove('grassEncounter');void frame.offsetWidth;frame.classList.add('grassEncounter');setTimeout(()=>frame.classList.remove('grassEncounter'),520);}
-    setTimeout(()=>{inputLocked=false;if(!B)startBattle(species,{level:classicLevel(area)});},260);
+    setTimeout(()=>{inputLocked=false;if(!B)startBattle(species,{level:classicLevel(area)});},45);
   }
 
   const V91_TRY_MOVE=tryMove;
