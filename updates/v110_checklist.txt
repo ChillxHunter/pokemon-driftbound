@@ -1,1 +1,0 @@
-Verified: v110_door_sequence.js passes node --check locally before merge.
