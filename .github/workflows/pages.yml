@@ -38,6 +38,7 @@ jobs:
           python3 deploy/apply_v95.py _site
           python3 deploy/apply_v96.py _site
           python3 deploy/apply_v97.py _site
+          python3 deploy/apply_v105.py _site
           node --check _site/game.js
           node --check _site/movement_patch.js
           node --check _site/classic_world_patch.js
