@@ -1,0 +1,128 @@
+/* Pokémon: Driftbound v106 — mobile battle message + move split layout */
+@media(max-width:650px){
+  body.gameboy-mobile .battleStage.battleShell{
+    grid-template-rows:minmax(0,50%) minmax(0,50%)!important;
+  }
+
+  /* Original prompt stays in the scene for desktop only. */
+  body.gameboy-mobile .battlePromptInScene{display:none!important}
+
+  /* Player HUD can sit at the bottom now that the prompt is no longer there. */
+  body.gameboy-mobile .battleScene .playerCombatant .battleInfo{
+    right:6px!important;
+    bottom:10px!important;
+    width:min(34vw,142px)!important;
+  }
+
+  body.gameboy-mobile .battleControls{
+    grid-template-rows:minmax(0,1fr) 92px!important;
+    gap:4px!important;
+    padding:4px!important;
+  }
+
+  body.gameboy-mobile .battleMoveZoneSplit{
+    height:100%!important;
+    min-height:0!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,35%) minmax(0,65%)!important;
+    gap:5px!important;
+    overflow:hidden!important;
+  }
+
+  body.gameboy-mobile .battleMobileMessageBox{
+    min-width:0!important;
+    min-height:0!important;
+    height:100%!important;
+    padding:11px 10px!important;
+    display:grid!important;
+    grid-template-columns:auto 1fr!important;
+    grid-template-rows:1fr auto!important;
+    align-items:start!important;
+    gap:6px!important;
+    overflow:hidden!important;
+    border:2px solid #4f82b1!important;
+    border-top:4px solid #d89500!important;
+    border-radius:10px!important;
+    background:linear-gradient(180deg,#1a2430,#111923)!important;
+    box-shadow:inset 0 0 0 2px #253746!important;
+    color:#f2f5f6!important;
+  }
+  body.gameboy-mobile .battleMobileMessageStar{font-size:17px!important;line-height:1!important}
+  body.gameboy-mobile .battleMobileMessageText{
+    min-width:0!important;
+    align-self:center!important;
+    font-size:clamp(11px,3vw,14px)!important;
+    line-height:1.25!important;
+    overflow-wrap:anywhere!important;
+  }
+  body.gameboy-mobile .battleMobileFieldSummary{
+    grid-column:1/-1!important;
+    align-self:end!important;
+    font-size:7px!important;
+    line-height:1.15!important;
+    color:#8195a5!important;
+    white-space:normal!important;
+  }
+
+  body.gameboy-mobile .battleMovePanel{
+    min-width:0!important;
+    min-height:0!important;
+    height:100%!important;
+    display:flex!important;
+    flex-direction:column!important;
+    overflow:hidden!important;
+  }
+  body.gameboy-mobile .battleMovePanel>.battleControlTitle{
+    flex:0 0 17px!important;
+  }
+  body.gameboy-mobile .battleMovePanel>.moves{
+    flex:1 1 auto!important;
+    height:auto!important;
+    min-height:0!important;
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    grid-template-rows:1fr 1fr!important;
+    gap:4px!important;
+  }
+  body.gameboy-mobile .battleMovePanel>.moves>button{
+    min-width:0!important;
+    min-height:0!important;
+    padding:5px 6px!important;
+  }
+  body.gameboy-mobile .battleMovePanel .moveNameRow b{font-size:clamp(11px,3.2vw,15px)!important}
+  body.gameboy-mobile .battleMovePanel .moveType{font-size:7px!important;padding:2px 5px!important}
+  body.gameboy-mobile .battleMovePanel .moveEffectIndicator{font-size:7px!important;padding:2px 5px!important}
+  body.gameboy-mobile .battleMovePanel .moveMeta,
+  body.gameboy-mobile .battleMovePanel button small{font-size:7px!important}
+
+  /* No redundant party strip. Pokémon action opens party switching. */
+  body.gameboy-mobile .battleTeamZone{display:none!important}
+
+  body.gameboy-mobile .battleUtilityZone{height:92px!important}
+  body.gameboy-mobile .battleUtilityStack{
+    height:73px!important;
+    grid-template-columns:1fr 1fr!important;
+    grid-template-rows:1fr 1fr!important;
+  }
+
+  body.gameboy-mobile .battleControls.bagMode .battleMoveZoneSplit{
+    grid-template-columns:minmax(0,30%) minmax(0,70%)!important;
+  }
+  body.gameboy-mobile .battleControls.bagMode .battleUtilityZone{height:61px!important}
+  body.gameboy-mobile .battleControls.bagMode .battleUtilityStack{height:42px!important;grid-template-columns:1fr!important;grid-template-rows:1fr!important}
+  body.gameboy-mobile .battleControls.bagMode .battleItemGrid{
+    min-height:0!important;height:100%!important;
+    grid-template-columns:1fr 1fr!important;
+    grid-template-rows:repeat(3,1fr)!important;
+    gap:3px!important;
+  }
+  body.gameboy-mobile .battleControls.bagMode .battleItemGrid button{min-height:0!important;padding:4px 6px!important}
+}
+
+@media(max-width:650px) and (max-height:700px){
+  body.gameboy-mobile .battleStage.battleShell{grid-template-rows:minmax(0,48%) minmax(0,52%)!important}
+  body.gameboy-mobile .battleMoveZoneSplit{grid-template-columns:minmax(0,32%) minmax(0,68%)!important}
+  body.gameboy-mobile .battleMobileMessageBox{padding:7px!important}
+  body.gameboy-mobile .battleUtilityZone{height:82px!important}
+  body.gameboy-mobile .battleUtilityStack{height:63px!important}
+}
