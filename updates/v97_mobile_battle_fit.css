@@ -1,0 +1,97 @@
+/* Pokémon: Driftbound v97 — one-screen mobile battle layout. */
+body.gameboy-mobile.mobile-battle-active{overflow:hidden!important;height:100dvh!important}
+body.gameboy-mobile.mobile-battle-active .mobileGameMenuButton,
+body.gameboy-mobile.mobile-battle-active .mobileGameMenuDrawer{display:none!important}
+
+body.gameboy-mobile .battleScreen{
+  width:100vw!important;height:100dvh!important;min-height:0!important;max-height:100dvh!important;
+  overflow:hidden!important;padding:0!important;margin:0!important;background:#081a23!important
+}
+body.gameboy-mobile .battleStage.battleShell{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:100dvh!important;
+  display:grid!important;grid-template-rows:minmax(0,43%) minmax(0,57%)!important;
+  gap:3px!important;padding:3px!important;margin:0!important;overflow:hidden!important;border:0!important;border-radius:0!important
+}
+body.gameboy-mobile .battleBody{
+  min-height:0!important;height:100%!important;display:block!important;overflow:hidden!important;margin:0!important;padding:0!important
+}
+body.gameboy-mobile .battleScene{
+  width:100%!important;height:100%!important;min-height:0!important;max-height:none!important;
+  border-radius:10px!important;overflow:hidden!important
+}
+body.gameboy-mobile .battleLogPanel{display:none!important}
+
+/* Scene: preserve the cinematic view but reclaim vertical space. */
+body.gameboy-mobile .battleScene .enemyCombatant .battleInfo{left:6px!important;top:6px!important;width:min(43vw,178px)!important;padding:5px 7px!important}
+body.gameboy-mobile .battleScene .playerCombatant .battleInfo{right:6px!important;bottom:72px!important;width:min(43vw,178px)!important;padding:5px 7px!important}
+body.gameboy-mobile .battleScene .battleInfo strong,
+body.gameboy-mobile .battleScene .battleInfo b{font-size:clamp(12px,3.4vw,17px)!important}
+body.gameboy-mobile .battleScene .battleInfo small{font-size:8px!important}
+body.gameboy-mobile .battleScene .spriteInspect img{width:clamp(94px,25vw,132px)!important;height:clamp(94px,25vw,132px)!important}
+body.gameboy-mobile .battleScene .playerCombatant .spriteInspect img{width:clamp(105px,29vw,146px)!important;height:clamp(105px,29vw,146px)!important}
+body.gameboy-mobile .battlePromptInScene{
+  left:7px!important;right:7px!important;bottom:6px!important;width:auto!important;min-height:54px!important;
+  padding:8px 11px!important;border-radius:11px!important
+}
+body.gameboy-mobile .battlePromptInScene .battleMessage{font-size:clamp(12px,3.3vw,16px)!important;line-height:1.18!important}
+body.gameboy-mobile .battlePromptInScene small{font-size:8px!important}
+body.gameboy-mobile .battleAudioButton{width:42px!important;height:42px!important;top:8px!important;right:8px!important;z-index:80!important}
+
+/* Controls: everything must fit in the remaining 57% of the viewport. */
+body.gameboy-mobile .battleControls{
+  height:100%!important;min-height:0!important;max-height:none!important;overflow:hidden!important;
+  display:grid!important;grid-template-columns:1fr!important;grid-template-rows:minmax(0,1fr) auto auto!important;
+  gap:3px!important;padding:3px 4px 5px!important;margin:0!important
+}
+body.gameboy-mobile .battleMoveZone,
+body.gameboy-mobile .battleUtilityZone,
+body.gameboy-mobile .battleTeamZone{min-height:0!important;margin:0!important;padding:0!important;overflow:hidden!important}
+body.gameboy-mobile .battleControlTitle{height:17px!important;min-height:17px!important;margin:0 0 2px!important;font-size:9px!important;line-height:17px!important;letter-spacing:.08em!important}
+
+body.gameboy-mobile .battleControls .moves{
+  height:calc(100% - 19px)!important;min-height:0!important;display:grid!important;
+  grid-template-columns:1fr 1fr!important;grid-template-rows:1fr 1fr!important;gap:4px!important
+}
+body.gameboy-mobile .battleControls .moves>button,
+body.gameboy-mobile .battleControls .moveButton,
+body.gameboy-mobile .battleControls .moveSlot{
+  min-height:0!important;height:auto!important;padding:6px 8px!important;border-radius:9px!important;overflow:hidden!important
+}
+body.gameboy-mobile .battleControls .moves b,
+body.gameboy-mobile .battleControls .moves strong{font-size:clamp(12px,3.5vw,16px)!important;line-height:1.05!important}
+body.gameboy-mobile .battleControls .moves small,
+body.gameboy-mobile .battleControls .moves .moveMeta{font-size:8px!important;line-height:1.1!important}
+body.gameboy-mobile .moveEffectIndicator,
+body.gameboy-mobile .moveEffectRow{font-size:8px!important;line-height:1!important;margin-top:3px!important}
+
+body.gameboy-mobile .battleUtilityZone{height:94px!important}
+body.gameboy-mobile .battleUtilityStack{
+  height:75px!important;display:grid!important;grid-template-columns:1fr 1fr!important;grid-template-rows:1fr 1fr!important;gap:4px!important
+}
+body.gameboy-mobile .battleUtilityStack button{
+  min-height:0!important;height:auto!important;padding:5px 7px!important;border-radius:9px!important;overflow:hidden!important
+}
+body.gameboy-mobile .battleUtilityStack button b{font-size:11px!important;line-height:1!important}
+body.gameboy-mobile .battleUtilityStack button small{font-size:7px!important;line-height:1.05!important;margin-top:2px!important}
+
+body.gameboy-mobile .battleTeamZone{height:86px!important}
+body.gameboy-mobile .battlePartyStrip{
+  height:67px!important;display:grid!important;grid-template-columns:repeat(6,minmax(0,1fr))!important;gap:3px!important;overflow:hidden!important
+}
+body.gameboy-mobile .battlePartyStrip button,
+body.gameboy-mobile .battlePartyCard{min-width:0!important;width:100%!important;height:67px!important;padding:2px!important;border-radius:8px!important;overflow:hidden!important}
+body.gameboy-mobile .battlePartyStrip img{width:38px!important;height:38px!important;max-width:90%!important;object-fit:contain!important}
+body.gameboy-mobile .battlePartyStrip small,
+body.gameboy-mobile .battlePartyStrip span{font-size:6px!important;line-height:1!important}
+
+/* Very short browser viewports: prioritize playability over decoration. */
+@media(max-height:700px){
+  body.gameboy-mobile .battleStage.battleShell{grid-template-rows:minmax(0,40%) minmax(0,60%)!important}
+  body.gameboy-mobile .battleScene .spriteInspect img{width:88px!important;height:88px!important}
+  body.gameboy-mobile .battleScene .playerCombatant .spriteInspect img{width:100px!important;height:100px!important}
+  body.gameboy-mobile .battleUtilityZone{height:84px!important}
+  body.gameboy-mobile .battleUtilityStack{height:65px!important}
+  body.gameboy-mobile .battleTeamZone{height:72px!important}
+  body.gameboy-mobile .battlePartyStrip,body.gameboy-mobile .battlePartyStrip button,body.gameboy-mobile .battlePartyCard{height:54px!important}
+  body.gameboy-mobile .battlePartyStrip img{width:30px!important;height:30px!important}
+}
