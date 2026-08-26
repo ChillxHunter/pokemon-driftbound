@@ -1,0 +1,47 @@
+/* Pokémon: Driftbound v98 — top journey banner + mobile options. */
+.mobileJourneyTop{display:none}
+body.gameboy-mobile .mobileJourneyTop{
+  display:block;position:relative;z-index:29;width:100%;padding:9px 13px 10px;
+  background:linear-gradient(180deg,#0a343e,#082831);border-top:1px solid rgba(255,255,255,.07);border-bottom:2px solid rgba(202,171,74,.35);
+  color:#edf8f4;box-shadow:0 3px 12px rgba(0,0,0,.2)
+}
+body.gameboy-mobile .mobileJourneyTop .mjEyebrow{font:900 8px/1 system-ui,sans-serif;letter-spacing:.16em;color:#74c4ac;margin-bottom:4px}
+body.gameboy-mobile .mobileJourneyTop .mjRow{display:flex;align-items:center;gap:8px;min-width:0}
+body.gameboy-mobile .mobileJourneyTop .mjTitle{flex:1;min-width:0;font:900 clamp(15px,4.6vw,21px)/1.08 Georgia,serif;color:#fff7d8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.gameboy-mobile .mobileJourneyTop .mjMeta{flex:0 0 auto;font:800 8px/1.1 system-ui,sans-serif;color:#b9d7d2;white-space:nowrap}
+body.gameboy-mobile .mobileJourneyTop .mjDesc{margin-top:5px;font:500 10px/1.25 system-ui,sans-serif;color:#a9c5c1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+body.gameboy-mobile .sidePanel{display:none!important}
+
+/* The phone game world now gets the freed vertical space. */
+body.gameboy-mobile .worldFrame{height:calc(100dvh - 64px - 67px)!important;min-height:430px!important}
+@media(max-width:430px){body.gameboy-mobile .worldFrame{height:calc(100dvh - 61px - 64px)!important;min-height:410px!important}}
+
+/* Options UI inside the existing mobile drawer. */
+body.gameboy-mobile .mobileOptionsButton{
+  width:100%;min-height:46px;border:1px solid rgba(255,255,255,.16);border-radius:12px;background:linear-gradient(180deg,#245965,#123b46);color:#fff;
+  font:800 10px/1 system-ui,sans-serif;letter-spacing:.08em
+}
+body.gameboy-mobile .mobileOptionsView{display:none;padding:2px 0 0}
+body.gameboy-mobile .mobileOptionsView.open{display:block}
+body.gameboy-mobile .mobileOptionsTabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;margin-bottom:8px}
+body.gameboy-mobile .mobileOptionsTabs button{height:36px;border:1px solid rgba(255,255,255,.14);border-radius:10px;background:#123c47;color:#cfe5e3;font:800 9px/1 system-ui,sans-serif}
+body.gameboy-mobile .mobileOptionsTabs button.active{background:#276879;color:white;outline:1px solid rgba(247,210,84,.55)}
+body.gameboy-mobile .mobileOptionsPane{display:none;gap:7px}
+body.gameboy-mobile .mobileOptionsPane.active{display:grid}
+body.gameboy-mobile .mobileOptionRow{display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;min-height:48px;padding:8px 9px;border:1px solid rgba(255,255,255,.1);border-radius:11px;background:rgba(255,255,255,.035)}
+body.gameboy-mobile .mobileOptionText b{display:block;color:#f0f8f7;font:800 10px/1.2 system-ui,sans-serif}
+body.gameboy-mobile .mobileOptionText small{display:block;margin-top:3px;color:#88aaa8;font:500 8px/1.25 system-ui,sans-serif}
+body.gameboy-mobile .mobileOptionRow select,body.gameboy-mobile .mobileOptionRow input[type="range"]{max-width:116px}
+body.gameboy-mobile .mobileOptionRow select{height:34px;border-radius:9px;border:1px solid #46727a;background:#092c35;color:white;padding:0 7px;font:700 9px system-ui,sans-serif}
+body.gameboy-mobile .mobileOptionToggle{min-width:56px;height:32px;border-radius:17px;border:1px solid rgba(255,255,255,.18);background:#263f46;color:#b8c8c7;font:900 9px system-ui,sans-serif}
+body.gameboy-mobile .mobileOptionToggle.on{background:#247b68;color:#fff}
+body.gameboy-mobile .mobileOptionsBack{width:100%;height:38px;margin-top:8px;border:1px solid rgba(255,255,255,.15);border-radius:10px;background:#173f49;color:#fff;font:800 9px system-ui,sans-serif}
+
+/* Graphics presets provide visible/performance-oriented differences. */
+html[data-driftbound-graphics="low"] body{--mobile-filter:none}
+html[data-driftbound-graphics="low"] .worldFrame{filter:none!important}
+html[data-driftbound-graphics="low"] .worldFrame canvas{image-rendering:auto}
+html[data-driftbound-graphics="high"] .worldFrame{filter:saturate(1.06) contrast(1.025)}
+
+/* Gameplay setting: remove costly/long decorative motion while keeping actions usable. */
+body.driftbound-reduced-motion *,body.driftbound-reduced-motion *::before,body.driftbound-reduced-motion *::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}
