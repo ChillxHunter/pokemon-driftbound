@@ -30,11 +30,11 @@ else:
     import re
     i = re.sub(r'v107_mobile_battle_columns\.css\?v=[^"\']+', 'v107_mobile_battle_columns.css?v=mobile-107', i)
 
-# v110 replaces the v109 approach patch. It uses a staged sequence:
-# stop outside -> open -> walk through -> close -> transition, and also gives
-# the Pokemon Center doorway a light vestibule matching the interior floor.
-script = '  <script src="v110_door_sequence.js?v=doors-110"></script>\n'
-if 'v110_door_sequence.js' not in i:
+# v111 replaces the v110 entry sequence. It stages Calem farther outside the
+# doorway and uses a higher, steeper entrance camera so the building does not
+# block the door animation. It keeps the Center vestibule/floor treatment.
+script = '  <script src="v111_door_sequence.js?v=doors-111"></script>\n'
+if 'v111_door_sequence.js' not in i:
     i = i.replace('</body>', script + '</body>')
 
 index.write_text(i, encoding='utf-8')
