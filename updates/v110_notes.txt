@@ -1,0 +1,1 @@
+v110 sequence: stop at threshold, open doors, walk through, close doors, then transition. Pokemon Center vestibule uses the interior floor palette.
