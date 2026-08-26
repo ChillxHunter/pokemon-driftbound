@@ -1,0 +1,79 @@
+/* Pokémon: Driftbound v94 — on-screen controller */
+.mobileControlsToggle{
+  margin-left:auto;
+  min-height:34px;
+  padding:7px 12px;
+  border:1px solid rgba(196,231,235,.34);
+  border-radius:10px;
+  background:linear-gradient(#164f5d,#0d3944);
+  color:#eefcff;
+  font:700 11px/1.1 system-ui,sans-serif;
+  box-shadow:inset 0 1px rgba(255,255,255,.08),0 2px 8px rgba(0,0,0,.18);
+  cursor:pointer;
+}
+.mobileControlsToggle b{color:#ffe37a}
+.mobileControlsToggle .controllerGlyph{font-size:15px;margin-right:5px}
+.mobileControlsToggle[aria-pressed="true"]{outline:2px solid rgba(255,218,92,.5);outline-offset:1px}
+
+body:not(.mobile-controls-enabled) .mobilePad{display:none!important}
+body.mobile-controls-enabled .mobilePad{
+  display:grid!important;
+  position:fixed!important;
+  left:max(14px,env(safe-area-inset-left))!important;
+  bottom:max(16px,env(safe-area-inset-bottom))!important;
+  width:184px!important;
+  height:184px!important;
+  grid-template-columns:repeat(3,1fr)!important;
+  grid-template-rows:repeat(3,1fr)!important;
+  gap:7px!important;
+  z-index:1600!important;
+  pointer-events:auto!important;
+  padding:10px!important;
+  border-radius:28px!important;
+  background:rgba(8,35,43,.38)!important;
+  border:1px solid rgba(220,248,250,.22)!important;
+  backdrop-filter:blur(7px);
+  -webkit-backdrop-filter:blur(7px);
+  box-shadow:0 10px 28px rgba(0,0,0,.26)!important;
+  touch-action:none!important;
+}
+body.mobile-controls-enabled .mobilePad button{
+  min-width:0!important;
+  min-height:0!important;
+  width:auto!important;
+  height:auto!important;
+  margin:0!important;
+  padding:0!important;
+  border:1px solid rgba(255,255,255,.42)!important;
+  border-radius:18px!important;
+  background:linear-gradient(180deg,rgba(67,143,177,.94),rgba(25,90,128,.96))!important;
+  color:white!important;
+  font:900 23px/1 system-ui,sans-serif!important;
+  text-shadow:0 1px 2px #173c51!important;
+  box-shadow:inset 0 2px rgba(255,255,255,.22),0 4px 8px rgba(0,0,0,.22)!important;
+  user-select:none!important;
+  -webkit-user-select:none!important;
+  touch-action:none!important;
+}
+body.mobile-controls-enabled .mobilePad button:active{
+  transform:scale(.93)!important;
+  filter:brightness(1.15)!important;
+}
+body.mobile-controls-enabled .mobilePad [data-move="up"]{grid-column:2;grid-row:1}
+body.mobile-controls-enabled .mobilePad [data-move="left"]{grid-column:1;grid-row:2}
+body.mobile-controls-enabled .mobilePad [data-action="interact"]{
+  grid-column:2;grid-row:2;
+  border-radius:50%!important;
+  background:linear-gradient(180deg,#f4c64d,#d28a24)!important;
+  color:#173640!important;
+  text-shadow:none!important;
+  font-size:21px!important;
+}
+body.mobile-controls-enabled .mobilePad [data-move="right"]{grid-column:3;grid-row:2}
+body.mobile-controls-enabled .mobilePad [data-move="down"]{grid-column:2;grid-row:3}
+
+@media(max-width:720px){
+  .controlStrip{gap:8px}
+  .mobileControlsToggle{font-size:10px;padding:6px 8px}
+  body.mobile-controls-enabled .mobilePad{width:166px!important;height:166px!important;left:10px!important;bottom:10px!important}
+}
