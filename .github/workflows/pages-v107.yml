@@ -1,4 +1,4 @@
-name: Deploy Pokemon Driftbound v109 Clean
+name: Deploy Pokemon Driftbound v110 Clean
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: driftbound-v109-clean
+  group: driftbound-v110-clean
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Rebuild v109 site
+      - name: Rebuild v110 site
         shell: bash
         run: |
           set -euo pipefail
@@ -58,10 +58,10 @@ jobs:
           node --check _site/v95_mobile_layout.js
           node --check _site/v96_gameboy_mobile.js
           node --check _site/v97_mobile_battle_fit.js
-          node --check _site/v109_door_approach.js
+          node --check _site/v110_door_sequence.js
           test -f _site/v107_mobile_battle_columns.css
           grep -q "v107_mobile_battle_columns.css" _site/index.html
-          grep -q "v109_door_approach.js?v=doors-109" _site/index.html
+          grep -q "v110_door_sequence.js?v=doors-110" _site/index.html
           grep -q "Pokémon" _site/game.js
           grep -q "Last Ball Used" _site/game.js
           touch _site/.nojekyll
