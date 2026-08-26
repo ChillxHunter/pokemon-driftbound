@@ -34,6 +34,7 @@ jobs:
           python3 deploy/apply_v89.py _site
           python3 deploy/apply_v92.py _site
           python3 deploy/apply_v93.py _site
+          python3 deploy/apply_v94.py _site
           node --check _site/game.js
           node --check _site/movement_patch.js
           node --check _site/classic_world_patch.js
@@ -47,6 +48,7 @@ jobs:
           node --check _site/v92_world_patch.js
           node --check _site/v92_gameplay_patch.js
           node --check _site/v93_character_patch.js
+          node --check _site/v94_mobile_controls.js
           touch _site/.nojekyll
           test -f _site/index.html
 
