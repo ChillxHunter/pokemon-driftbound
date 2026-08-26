@@ -30,11 +30,11 @@ else:
     import re
     i = re.sub(r'v107_mobile_battle_columns\.css\?v=[^"\']+', 'v107_mobile_battle_columns.css?v=mobile-107', i)
 
-# v111 replaces the v110 entry sequence. It stages Calem farther outside the
-# doorway and uses a higher, steeper entrance camera so the building does not
-# block the door animation. It keeps the Center vestibule/floor treatment.
-script = '  <script src="v111_door_sequence.js?v=doors-111"></script>\n'
-if 'v111_door_sequence.js' not in i:
+# v112 replaces the v111 door sequence. It uses a much steeper entrance/exit
+# camera, crosses only the glass threshold so Calem never intersects the solid
+# building shell, and replaces the old one-tile exit with a clear landing.
+script = '  <script src="v112_door_sequence.js?v=doors-112"></script>\n'
+if 'v112_door_sequence.js' not in i:
     i = i.replace('</body>', script + '</body>')
 
 index.write_text(i, encoding='utf-8')
