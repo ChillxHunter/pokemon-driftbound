@@ -1,0 +1,26 @@
+/* Pokémon: Driftbound v105 — cleaner mobile battle layout. */
+body.gameboy-mobile .battleTeamZone{
+  display:none!important;
+  height:0!important;
+  min-height:0!important;
+  overflow:hidden!important;
+}
+
+/* Give the removed team strip back to the battle scene. */
+body.gameboy-mobile .battleStage.battleShell{
+  grid-template-rows:minmax(0,49%) minmax(0,51%)!important;
+}
+body.gameboy-mobile .battleControls{
+  grid-template-rows:minmax(0,1fr) auto!important;
+  padding-bottom:4px!important;
+}
+
+/* Keep action rows compact now that Pokémon switching has its own button. */
+body.gameboy-mobile .battleUtilityZone{height:94px!important}
+body.gameboy-mobile .battleUtilityStack{height:75px!important}
+
+@media(max-height:700px){
+  body.gameboy-mobile .battleStage.battleShell{
+    grid-template-rows:minmax(0,46%) minmax(0,54%)!important;
+  }
+}
