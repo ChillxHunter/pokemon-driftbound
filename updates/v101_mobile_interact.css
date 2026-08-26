@@ -1,0 +1,5 @@
+/* Pokémon: Driftbound v101 — mobile interaction prompt cleanup. */
+body.gameboy-mobile .interactionHint,
+body.driftbound-mobile .interactionHint{
+  display:none!important;
+}
