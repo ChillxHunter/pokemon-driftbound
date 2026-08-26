@@ -1,0 +1,148 @@
+/* Pokémon: Driftbound v100 — true one-screen handheld viewport. */
+
+html.gameboy-mobile-root,
+html.gameboy-mobile-root body{
+  width:100%!important;
+  height:var(--db-mobile-vh,100dvh)!important;
+  min-height:0!important;
+  max-height:var(--db-mobile-vh,100dvh)!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+}
+
+body.gameboy-mobile{
+  position:fixed!important;
+  inset:0!important;
+  width:100%!important;
+  height:var(--db-mobile-vh,100dvh)!important;
+  min-height:0!important;
+  max-height:var(--db-mobile-vh,100dvh)!important;
+  overflow:hidden!important;
+  overscroll-behavior:none!important;
+  touch-action:manipulation;
+}
+
+body.gameboy-mobile .gameApp:not(.hidden){
+  position:relative!important;
+  width:100%!important;
+  height:var(--db-mobile-vh,100dvh)!important;
+  min-height:0!important;
+  max-height:var(--db-mobile-vh,100dvh)!important;
+  padding:0!important;
+  overflow:hidden!important;
+  display:flex!important;
+  flex-direction:column!important;
+}
+
+body.gameboy-mobile .topBar,
+body.gameboy-mobile .mobileJourneyTop{
+  flex:0 0 auto!important;
+}
+
+body.gameboy-mobile .gameLayout{
+  flex:1 1 auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  margin:0!important;
+  padding:0!important;
+  display:block!important;
+  overflow:hidden!important;
+}
+
+body.gameboy-mobile .playColumn{
+  width:100%!important;
+  height:100%!important;
+  min-height:0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  overflow:hidden!important;
+}
+
+body.gameboy-mobile .worldFrame{
+  flex:1 1 auto!important;
+  width:100%!important;
+  height:auto!important;
+  min-height:0!important;
+  max-height:none!important;
+  aspect-ratio:auto!important;
+  overflow:hidden!important;
+  border-left:0!important;
+  border-right:0!important;
+  border-bottom:0!important;
+  border-radius:0!important;
+}
+
+body.gameboy-mobile #world{
+  display:block!important;
+  width:100%!important;
+  height:100%!important;
+}
+
+body.gameboy-mobile .controlStrip,
+body.gameboy-mobile .sidePanel{
+  display:none!important;
+}
+
+body.gameboy-mobile .mobileGameMenuButton{
+  display:flex!important;
+  position:fixed!important;
+  top:var(--db-menu-top,150px)!important;
+  right:max(10px,env(safe-area-inset-right))!important;
+  left:auto!important;
+  bottom:auto!important;
+  z-index:1800!important;
+  min-width:82px!important;
+  height:44px!important;
+  padding:0 12px!important;
+  border-radius:14px!important;
+}
+
+body.gameboy-mobile .mobileGameMenuDrawer{
+  position:fixed!important;
+  top:calc(var(--db-menu-top,150px) + 50px)!important;
+  right:max(10px,env(safe-area-inset-right))!important;
+  left:auto!important;
+  bottom:auto!important;
+  width:min(272px,calc(100vw - 20px))!important;
+  max-height:calc(var(--db-mobile-vh,100dvh) - var(--db-menu-top,150px) - 62px)!important;
+  overflow:auto!important;
+  overscroll-behavior:contain!important;
+  transform:translateY(-8px) scale(.96)!important;
+  transform-origin:top right!important;
+}
+body.gameboy-mobile .mobileGameMenuDrawer.open{
+  transform:none!important;
+}
+
+body.gameboy-mobile.mobile-controls-enabled .worldFrame>.mobilePad{
+  bottom:max(5px,env(safe-area-inset-bottom))!important;
+}
+
+body.gameboy-mobile .worldFrame .dialogueBox{
+  bottom:154px!important;
+  max-height:min(29dvh,220px)!important;
+}
+
+body.gameboy-mobile .worldFrame,
+body.gameboy-mobile .mobilePad,
+body.gameboy-mobile .mobileGameMenuButton{
+  overscroll-behavior:none!important;
+}
+
+@media(max-width:430px){
+  body.gameboy-mobile .worldFrame .dialogueBox{
+    bottom:144px!important;
+    max-height:min(27dvh,200px)!important;
+  }
+  body.gameboy-mobile .mobileGameMenuButton{
+    min-width:76px!important;
+    height:42px!important;
+    padding:0 10px!important;
+    font-size:10px!important;
+  }
+  body.gameboy-mobile .mobileGameMenuDrawer{
+    top:calc(var(--db-menu-top,150px) + 47px)!important;
+  }
+}
