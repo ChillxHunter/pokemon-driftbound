@@ -1,0 +1,122 @@
+/* Pokémon: Driftbound v107 — mobile battle text left, all four moves right */
+@media (max-width:650px){
+  /* Force the split layout regardless of which mobile body class is active. */
+  .battleControls .battleMoveZoneSplit{
+    display:grid!important;
+    grid-template-columns:minmax(0,34%) minmax(0,66%)!important;
+    grid-template-rows:minmax(0,1fr)!important;
+    gap:6px!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    overflow:hidden!important;
+  }
+
+  /* Battle text owns the whole left column. */
+  .battleControls .battleMobileMessageBox{
+    grid-column:1!important;
+    grid-row:1!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:10px 9px!important;
+    overflow:hidden!important;
+    border:2px solid #4f82b1!important;
+    border-top:4px solid #d89500!important;
+    border-radius:10px!important;
+    background:linear-gradient(180deg,#1a2430,#111923)!important;
+    box-sizing:border-box!important;
+  }
+  .battleControls .battleMobileMessageText{
+    font-size:clamp(10px,2.8vw,13px)!important;
+    line-height:1.22!important;
+    overflow-wrap:anywhere!important;
+  }
+  .battleControls .battleMobileFieldSummary{
+    font-size:7px!important;
+    line-height:1.15!important;
+  }
+
+  /* The complete four-move frame owns the whole right column. */
+  .battleControls .battleMovePanel{
+    grid-column:2!important;
+    grid-row:1!important;
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:4px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    overflow:hidden!important;
+    border:2px solid #d7e4ee!important;
+    border-radius:10px!important;
+    background:#18222c!important;
+    box-sizing:border-box!important;
+  }
+  .battleControls .battleMovePanel>.battleControlTitle{
+    flex:0 0 17px!important;
+    margin:0!important;
+    padding:0 2px!important;
+    font-size:9px!important;
+    line-height:17px!important;
+  }
+  .battleControls .battleMovePanel>.moves{
+    flex:1 1 auto!important;
+    width:100%!important;
+    height:auto!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    grid-template-rows:minmax(0,1fr) minmax(0,1fr)!important;
+    gap:4px!important;
+  }
+  .battleControls .battleMovePanel>.moves>.battleMoveCard,
+  .battleControls .battleMovePanel>.moves>button{
+    width:100%!important;
+    height:100%!important;
+    min-width:0!important;
+    min-height:0!important;
+    margin:0!important;
+    padding:5px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+  }
+  .battleControls .battleMovePanel .moveNameRow{
+    gap:3px!important;
+  }
+  .battleControls .battleMovePanel .moveNameRow b{
+    min-width:0!important;
+    font-size:clamp(9px,2.7vw,13px)!important;
+    line-height:1.05!important;
+    overflow-wrap:anywhere!important;
+  }
+  .battleControls .battleMovePanel .moveType,
+  .battleControls .battleMovePanel .moveEffectIndicator{
+    font-size:6px!important;
+    padding:2px 4px!important;
+  }
+  .battleControls .battleMovePanel button small{
+    font-size:6px!important;
+    line-height:1.15!important;
+  }
+
+  /* Old in-scene prompt must never compete with the left message column. */
+  .battlePromptInScene{display:none!important}
+}
+
+@media (max-width:650px) and (max-height:720px){
+  .battleControls .battleMoveZoneSplit{
+    grid-template-columns:minmax(0,32%) minmax(0,68%)!important;
+  }
+  .battleControls .battleMobileMessageBox{padding:7px!important}
+  .battleControls .battleMovePanel{padding:3px!important}
+  .battleControls .battleMovePanel>.moves{gap:3px!important}
+  .battleControls .battleMovePanel>.moves>button{padding:4px!important}
+}
