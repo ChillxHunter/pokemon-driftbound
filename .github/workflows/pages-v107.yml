@@ -1,4 +1,4 @@
-name: Deploy Pokemon Driftbound v114 Clean
+name: Deploy Pokemon Driftbound v115 Clean
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: driftbound-v114-clean
+  group: driftbound-v115-clean
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Rebuild v114 site
+      - name: Rebuild v115 site
         shell: bash
         run: |
           set -euo pipefail
@@ -42,6 +42,7 @@ jobs:
           python3 deploy/apply_v106.py _site
           python3 deploy/apply_v107.py _site
           python3 deploy/apply_v114.py _site
+          python3 deploy/apply_v115.py _site
           node --check _site/game.js
           node --check _site/movement_patch.js
           node --check _site/classic_world_patch.js
@@ -59,14 +60,24 @@ jobs:
           node --check _site/v95_mobile_layout.js
           node --check _site/v96_gameboy_mobile.js
           node --check _site/v97_mobile_battle_fit.js
-          node --check _site/v114_movement_camera.js
+          node --check _site/v115_trainer_mesh_pack1.js
+          node --check _site/v115_world_rework.js
+          node --check _site/v115_movement_camera.js
           node --check _site/v112_door_sequence.js
+          python3 -m py_compile deploy/apply_v115.py
           test -f _site/v107_mobile_battle_columns.css
           grep -q "v107_mobile_battle_columns.css" _site/index.html
-          grep -q "v114_movement_camera.js?v=movement-114" _site/index.html
+          grep -q "v115_trainer_mesh_pack1.js?v=trainers-115" _site/index.html
+          grep -q "v115_world_rework.js?v=world-115" _site/index.html
+          grep -q "v115_movement_camera.js?v=movement-115" _site/index.html
           grep -q "v112_door_sequence.js?v=doors-112" _site/index.html
+          ! grep -q "v114_movement_camera.js" _site/index.html
           ! grep -q "v113_global_camera.js" _site/index.html
-          grep -Fq "const interval=125*(diagonal?Math.SQRT2:1);" _site/game.js
+          grep -q "__DRIFTBOUND_MOVE_INPUT__" _site/game.js
+          grep -q "__DRIFTBOUND_WALKABLE__" _site/game.js
+          grep -q "__DRIFTBOUND_MOVE_BLOCKED__" _site/game.js
+          grep -q "DriftboundPokemonCenterV115" _site/v115_world_rework.js
+          grep -q "actualTrainer" _site/v115_world_rework.js
           grep -q "Pokémon" _site/game.js
           grep -q "Last Ball Used" _site/game.js
           touch _site/.nojekyll
