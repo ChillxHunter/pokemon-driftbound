@@ -1,4 +1,4 @@
-name: Deploy Pokemon Driftbound v120 World Foundation
+name: Deploy Pokemon Driftbound v121 Visual Reset
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: driftbound-v120-world-foundation
+  group: driftbound-v121-visual-reset
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Rebuild v120 site
+      - name: Rebuild v121 site
         shell: bash
         run: |
           set -euo pipefail
@@ -46,38 +46,45 @@ jobs:
           python3 deploy/apply_v118.py _site
           python3 deploy/apply_v119.py _site
           python3 deploy/apply_v120.py _site
+          python3 deploy/apply_v121.py _site
 
           node --check _site/game.js
           node --check _site/classic_region_part2.js
           node --check _site/v116_interiors.js
           node --check _site/v116_trainer_battle.js
           node --check _site/v118_mobile_ui.js
-          node --check _site/v119_living_world.js
-          node --check _site/v120_world_foundation.js
-          python3 -m py_compile deploy/apply_v116.py deploy/apply_v117.py deploy/apply_v118.py deploy/apply_v119.py deploy/apply_v120.py
+          node --check _site/v121_battle_reset.js
+          node --check _site/v121_world_reset.js
+          python3 -m py_compile deploy/apply_v116.py deploy/apply_v117.py deploy/apply_v118.py deploy/apply_v119.py deploy/apply_v120.py deploy/apply_v121.py
 
-          # Battle interface remains the restored v117 implementation, but cache-busted for phones.
-          grep -q "game.js?v=battle-120" _site/index.html
-          grep -q "v107_mobile_battle_columns.css?v=battle-120" _site/index.html
-          grep -q 'battleMoveZone battleMoveZoneSplit' _site/game.js
-          grep -q 'id="pokemonButton"' _site/game.js
-          grep -q 'id="lastBallButton"' _site/game.js
-          ! grep -q 'id="studyButton"' _site/game.js
+          # v121 four-command battle flow: FIGHT / BAG / POKEMON / RUN.
+          grep -q "game.js?v=battle-121" _site/index.html
+          grep -q "v121_battle_reset.css?v=battle-reset-121" _site/index.html
+          grep -q "v121_battle_reset.js?v=battle-reset-121" _site/index.html
+          grep -q 'id="v121FightButton"' _site/v121_battle_reset.js
+          grep -q 'id="battleBagButton"' _site/v121_battle_reset.js
+          grep -q 'id="pokemonButton"' _site/v121_battle_reset.js
+          grep -q 'id="runButton"' _site/v121_battle_reset.js
+          grep -q 'v121BattleFightMenu' _site/v121_battle_reset.js
 
-          # Keep route/interior/trainer/door systems.
+          # v121 retires the failed v119/v120 giant-tree overlays.
+          ! grep -q "v119_living_world.js?v=" _site/index.html
+          ! grep -q "v120_world_foundation.js?v=" _site/index.html
+          grep -q "v121_world_reset.css?v=world-reset-121" _site/index.html
+          grep -q "v121_world_reset.js?v=world-reset-121" _site/index.html
+          grep -q "V121_Mainland" _site/v121_world_reset.js
+          grep -q "V121_NaturalTree" _site/v121_world_reset.js
+          grep -q "V121_FieldGrass" _site/v121_world_reset.js
+          grep -q "V121_WORLD_RESET_READY" _site/v121_world_reset.js
+          grep -q "this.buildKey=''" _site/v121_world_reset.js
+
+          # Gameplay progression, interiors, trainers and doors remain intact.
           grep -Fq "forestObstacleChance=areaId==='route2'?.32:.75" _site/classic_region_part2.js
           grep -q "v118_mobile_ui.js?v=118-fixes" _site/index.html
           grep -q "v116_trainers_runtime.js?v=116-final" _site/index.html
           grep -q "v116_world_visuals.js?v=116-final" _site/index.html
           grep -q "v116_doors.js?v=116-final" _site/index.html
           grep -q "v116_trainer_battle.js?v=116-final" _site/index.html
-
-          # v120 must load and force the opening map to rebuild immediately.
-          grep -q "v120_world_foundation.js?v=world-120" _site/index.html
-          grep -q "V120_RichGround" _site/v120_world_foundation.js
-          grep -q "V120_GiantTree" _site/v120_world_foundation.js
-          grep -q "V120_DenseTallGrass" _site/v120_world_foundation.js
-          grep -q "this.buildKey=''" _site/v120_world_foundation.js
           touch _site/.nojekyll
 
       - name: Configure Pages
