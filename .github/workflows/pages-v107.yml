@@ -1,4 +1,4 @@
-name: Deploy Pokemon Driftbound v115 Clean
+name: Deploy Pokemon Driftbound v116 Clean
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: driftbound-v115-clean
+  group: driftbound-v116-clean
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Rebuild v115 site
+      - name: Rebuild v116 site
         shell: bash
         run: |
           set -euo pipefail
@@ -43,6 +43,8 @@ jobs:
           python3 deploy/apply_v107.py _site
           python3 deploy/apply_v114.py _site
           python3 deploy/apply_v115.py _site
+          python3 deploy/apply_v116.py _site
+
           node --check _site/game.js
           node --check _site/movement_patch.js
           node --check _site/classic_world_patch.js
@@ -60,26 +62,39 @@ jobs:
           node --check _site/v95_mobile_layout.js
           node --check _site/v96_gameboy_mobile.js
           node --check _site/v97_mobile_battle_fit.js
-          node --check _site/v115_trainer_mesh_pack1.js
-          node --check _site/v115_world_rework.js
+          node --check _site/v102_building_doors.js
           node --check _site/v115_movement_camera.js
-          node --check _site/v112_door_sequence.js
-          python3 -m py_compile deploy/apply_v115.py
+          node --check _site/v115_world_rework.js
+          node --check _site/v116_trainers_runtime.js
+          node --check _site/v116_world_visuals.js
+          node --check _site/v116_interiors.js
+          node --check _site/v116_doors.js
+          node --check _site/v116_trainer_battle.js
+          for f in _site/v116_trainer_*.js; do node --check "$f"; done
+          python3 -m py_compile deploy/apply_v116.py
+
           test -f _site/v107_mobile_battle_columns.css
           grep -q "v107_mobile_battle_columns.css" _site/index.html
-          grep -q "v115_trainer_mesh_pack1.js?v=trainers-115" _site/index.html
-          grep -q "v115_world_rework.js?v=world-115" _site/index.html
-          grep -q "v115_movement_camera.js?v=movement-115" _site/index.html
-          grep -q "v112_door_sequence.js?v=doors-112" _site/index.html
+          grep -q "v116_trainer_youngster.js?v=116-final" _site/index.html
+          grep -q "v116_trainers_runtime.js?v=116-final" _site/index.html
+          grep -q "v116_world_visuals.js?v=116-final" _site/index.html
+          grep -q "v116_interiors.js?v=116-final" _site/index.html
+          grep -q "v116_doors.js?v=116-final" _site/index.html
+          grep -q "v116_trainer_battle.js?v=116-final" _site/index.html
+          ! grep -q "v112_door_sequence.js?v=doors-112" _site/index.html
           ! grep -q "v114_movement_camera.js" _site/index.html
           ! grep -q "v113_global_camera.js" _site/index.html
-          grep -q "__DRIFTBOUND_MOVE_INPUT__" _site/game.js
-          grep -q "__DRIFTBOUND_WALKABLE__" _site/game.js
-          grep -q "__DRIFTBOUND_MOVE_BLOCKED__" _site/game.js
-          grep -q "DriftboundPokemonCenterV115" _site/v115_world_rework.js
-          grep -q "actualTrainer" _site/v115_world_rework.js
+          grep -q "__DRIFTBOUND_DISABLE_V102_AUTODOOR__" _site/v102_building_doors.js
+          grep -q "__DRIFTBOUND_V116_DOOR_PRECHECK__" _site/v115_movement_camera.js
+          grep -q "__DRIFTBOUND_TRAINERS_V116__" _site/v116_trainers_runtime.js
+          grep -q "__DRIFTBOUND_V116_TRAINER_BATTLE__" _site/v116_trainer_battle.js
           grep -q "Pokémon" _site/game.js
           grep -q "Last Ball Used" _site/game.js
+          grep -q "v116_trainer_scientist_part4.js?v=116-final" _site/index.html
+          grep -q "v116_trainer_center_lady_part4.js?v=116-final" _site/index.html
+          grep -q "v116_trainer_pack_3.js?v=116-final" _site/index.html
+          grep -q "v116_trainer_battle.js?v=116-final" _site/index.html
+          ! grep -q "v112_door_sequence.js" _site/index.html
           touch _site/.nojekyll
 
       - name: Configure Pages
