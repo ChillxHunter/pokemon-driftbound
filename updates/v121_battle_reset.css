@@ -1,0 +1,121 @@
+/* Pokémon: Driftbound v121 — bright classic four-command battle presentation. */
+.battleScreen{background:#0c1720!important}
+.battleStage.battleShell{background:#15202a!important;border-color:#1c2933!important;box-shadow:0 18px 70px #0008!important}
+.battleBody{min-height:0!important}
+.battleScene{
+  isolation:isolate;
+  background:
+    radial-gradient(ellipse at 6% 47%,#2f803c 0 8%,transparent 8.5%),
+    radial-gradient(ellipse at 18% 45%,#3a9144 0 11%,transparent 11.5%),
+    radial-gradient(ellipse at 34% 48%,#28723b 0 10%,transparent 10.5%),
+    radial-gradient(ellipse at 67% 47%,#3e9548 0 12%,transparent 12.5%),
+    radial-gradient(ellipse at 84% 43%,#2a783c 0 10%,transparent 10.5%),
+    radial-gradient(ellipse at 100% 49%,#368a43 0 13%,transparent 13.5%),
+    linear-gradient(180deg,#2386d5 0%,#5fb2ec 37%,#a9d87c 38%,#78bd4f 58%,#57a63c 100%)!important;
+  border-color:#263c49!important;
+  box-shadow:inset 0 0 0 2px #ffffff25!important;
+}
+.battleScene::before{
+  content:"";position:absolute;z-index:0;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse at 14% 12%,#fff 0 2%,transparent 2.4%),
+    radial-gradient(ellipse at 20% 13%,#ffffffdd 0 3.2%,transparent 3.6%),
+    radial-gradient(ellipse at 72% 16%,#fff 0 2.6%,transparent 3%),
+    radial-gradient(ellipse at 77% 16%,#ffffffdd 0 3.8%,transparent 4.2%),
+    linear-gradient(180deg,transparent 0 67%,rgba(23,89,41,.25) 100%);
+}
+.battleScene .battleBackdrop{display:none!important}
+.battleScene .battleShade{display:none!important}
+.battleScene .weatherLayer{z-index:1}
+.battleScene .enemyPlatform,.battleScene .playerPlatform{
+  display:block!important;position:absolute!important;z-index:2!important;height:19%!important;border-radius:50%!important;
+  background:radial-gradient(ellipse at center,#7fc84d 0 53%,#65ae3e 54% 61%,#d0ae5d 62% 70%,#8c6f36 71% 75%,transparent 76%)!important;
+  filter:none!important;box-shadow:0 12px 20px #1c5b2d38!important;
+}
+.battleScene .enemyPlatform{width:42%!important;left:55%!important;right:auto!important;top:40%!important}
+.battleScene .playerPlatform{width:49%!important;left:2%!important;top:auto!important;bottom:4%!important}
+.battleScene .combatant{z-index:4!important}
+.battleScene .enemyCombatant .spriteInspect{left:76%!important;bottom:47%!important}
+.battleScene .playerCombatant .spriteInspect{left:27%!important;bottom:13%!important}
+.battleScene .spriteInspect img{filter:drop-shadow(0 9px 5px #17352070) saturate(1.08)!important}
+.battleScene .battleInfo{
+  color:#f7fbfc!important;background:rgba(22,29,33,.94)!important;border:2px solid #8c9da7!important;border-radius:12px!important;
+  box-shadow:inset 0 0 0 1px #ffffff20,0 5px 13px #0005!important
+}
+.battleScene .battleNameRow strong{color:#fff!important;font-family:system-ui,-apple-system,sans-serif!important;font-weight:800!important}
+.battleScene .battleNameRow span,.battleScene .battleHpText,.battleScene .battleExpText{color:#dce7eb!important}
+.battleScene .battleHpBar{height:9px!important;border:1px solid #101b20!important;background:#42525a!important;border-radius:7px!important;overflow:hidden!important}
+.battleScene .battleHpBar i{background:linear-gradient(90deg,#41c94f,#78e265)!important}
+.battleScene .battleExpBar{background:#263a45!important}
+.battlePromptInScene{display:none!important}
+.battleLogPanel{display:none!important}
+
+.battleControls{
+  min-height:0!important;height:auto!important;display:block!important;padding:10px!important;border:0!important;border-top:2px solid #40505a!important;
+  border-radius:0!important;background:linear-gradient(180deg,#151d23,#10171c)!important;box-shadow:none!important;overflow:hidden!important
+}
+.v121BattleCommandBar{height:100%;display:flex;flex-direction:column;gap:9px}
+.v121BattleQuestion{flex:0 0 auto;padding:3px 4px;color:#f6f7f8;font:700 16px/1.2 system-ui,-apple-system,sans-serif}
+.v121BattleQuestion b{font-weight:850}
+.v121ActionGrid{flex:1;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:9px;min-height:0}
+.battleControls .v121Action{
+  min-height:86px!important;padding:12px 10px!important;border:2px solid rgba(255,255,255,.28)!important;border-radius:8px!important;
+  box-shadow:inset 0 0 0 2px rgba(0,0,0,.12),0 4px 0 rgba(0,0,0,.32)!important;color:#fff!important;text-align:center!important;
+  display:flex!important;flex-direction:column!important;align-items:center!important;justify-content:center!important;gap:5px!important;font-family:system-ui,-apple-system,sans-serif!important
+}
+.battleControls .v121Action b{font-size:18px;line-height:1;font-weight:900;letter-spacing:.015em}
+.battleControls .v121Action small{display:block!important;margin:0!important;color:#f3f6f8!important;font-size:10px!important;font-weight:650!important;opacity:.88}
+.battleControls .v121Fight{background:linear-gradient(180deg,#c33b2a,#9f281e)!important}
+.battleControls .v121Bag{background:linear-gradient(180deg,#1979b8,#105b90)!important}
+.battleControls .v121Pokemon{background:linear-gradient(180deg,#2f9637,#217329)!important}
+.battleControls .v121Run{background:linear-gradient(180deg,#56636d,#3e4952)!important}
+.battleControls .v121Action:disabled{filter:grayscale(.35);opacity:.5!important}
+
+.v121BattleMoveMenu{height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:7px}
+.v121MoveHeader{display:flex;align-items:baseline;justify-content:space-between;padding:0 3px;color:#f7f9fa;font-family:system-ui,-apple-system,sans-serif}
+.v121MoveHeader b{font-size:16px}.v121MoveHeader span{font-size:10px;color:#aebbc3}
+.v121MovesGrid{min-height:0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px}
+.battleControls .v121MoveCard{
+  min-width:0;min-height:0!important;padding:8px 10px!important;border:2px solid #647782!important;border-radius:8px!important;
+  background:linear-gradient(180deg,#25313a,#1b252d)!important;color:#fff!important;box-shadow:inset 5px 0 var(--move-color,#4e8aaa)!important;
+  display:flex!important;flex-direction:column!important;justify-content:center!important;gap:5px!important;text-align:left!important
+}
+.battleControls .v121MoveCard .moveNameRow b{color:#fff;font-size:14px}
+.battleControls .v121MoveCard small{display:block!important;color:#b9c7ce!important;font-size:9px!important;margin:0!important}
+.battleControls .v121MoveCard .moveEffectIndicator{background:#172127!important;color:#d7e1e5!important;border-color:#657681!important}
+.battleControls .v121MoveBack{min-height:32px!important;padding:6px 12px!important;background:#36444e!important;color:#fff!important;border:1px solid #71818b!important;border-radius:7px!important;text-align:center!important;font:800 10px system-ui!important}
+
+@media(max-width:650px){
+  .battleScreen{padding:0!important}
+  .battleStage.battleShell{width:100%!important;height:100dvh!important;min-height:0!important;max-height:none!important;padding:0!important;gap:0!important;border:0!important;border-radius:0!important;display:grid!important;grid-template-rows:minmax(0,67%) minmax(0,33%)!important;overflow:hidden!important}
+  .battleBody{display:block!important;height:100%!important;min-height:0!important}
+  .battleScene{width:100%!important;height:100%!important;min-height:0!important;border:0!important;border-radius:0!important}
+  .battleScene .battleInfo{width:min(42vw,205px)!important;padding:7px 9px!important}
+  .battleScene .enemyCombatant .battleInfo{left:9px!important;top:9px!important}
+  .battleScene .playerCombatant .battleInfo{right:9px!important;bottom:9px!important}
+  .battleScene .battleNameRow strong{font-size:clamp(13px,3.7vw,16px)!important}
+  .battleScene .enemyCombatant .spriteInspect{left:76%!important;bottom:45%!important}
+  .battleScene .playerCombatant .spriteInspect{left:27%!important;bottom:10%!important}
+  .battleScene .enemyCombatant .spriteInspect img{width:clamp(130px,31vw,175px)!important;height:clamp(130px,31vw,175px)!important}
+  .battleScene .playerCombatant .spriteInspect img{width:clamp(160px,39vw,215px)!important;height:clamp(160px,39vw,215px)!important}
+  .battleScene .enemyPlatform{width:46%!important;left:53%!important;top:40%!important}
+  .battleScene .playerPlatform{width:52%!important;left:-1%!important;bottom:3%!important}
+  .battleControls{height:100%!important;padding:8px!important}
+  .v121BattleCommandBar{gap:6px}
+  .v121BattleQuestion{font-size:clamp(12px,3.5vw,15px);padding:0 2px}
+  .v121ActionGrid{grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:6px}
+  .battleControls .v121Action{min-height:0!important;height:100%!important;padding:7px!important;border-radius:7px!important}
+  .battleControls .v121Action b{font-size:clamp(14px,4vw,18px)}
+  .battleControls .v121Action small{font-size:8px!important}
+  .v121MovesGrid{gap:5px}
+  .battleControls .v121MoveCard{padding:6px 7px!important}
+  .battleControls .v121MoveCard .moveNameRow b{font-size:clamp(11px,3.1vw,14px)!important}
+  .battleControls .v121MoveCard .moveType{font-size:6px!important;padding:2px 4px!important}
+  .battleControls .v121MoveCard .moveEffectIndicator{font-size:6px!important;padding:2px 4px!important}
+  .battleControls .v121MoveCard small{font-size:7px!important}
+  .battleControls.bagMode{display:grid!important;grid-template-columns:1fr!important;overflow:auto!important}
+}
+
+@media(min-width:651px) and (max-width:1000px){
+  .v121ActionGrid{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
