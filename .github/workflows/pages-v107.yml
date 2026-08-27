@@ -1,4 +1,4 @@
-name: Deploy Pokemon Driftbound v119 Living World
+name: Deploy Pokemon Driftbound v120 World Foundation
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: driftbound-v119-living-world
+  group: driftbound-v120-world-foundation
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Rebuild v119 site
+      - name: Rebuild v120 site
         shell: bash
         run: |
           set -euo pipefail
@@ -45,6 +45,7 @@ jobs:
           python3 deploy/apply_v117.py _site
           python3 deploy/apply_v118.py _site
           python3 deploy/apply_v119.py _site
+          python3 deploy/apply_v120.py _site
 
           node --check _site/game.js
           node --check _site/classic_region_part2.js
@@ -52,33 +53,31 @@ jobs:
           node --check _site/v116_trainer_battle.js
           node --check _site/v118_mobile_ui.js
           node --check _site/v119_living_world.js
-          python3 -m py_compile deploy/apply_v116.py deploy/apply_v117.py deploy/apply_v118.py deploy/apply_v119.py
+          node --check _site/v120_world_foundation.js
+          python3 -m py_compile deploy/apply_v116.py deploy/apply_v117.py deploy/apply_v118.py deploy/apply_v119.py deploy/apply_v120.py
 
-          # Preserve the battle interface and music/audio systems from the working build.
-          grep -q "game.js?v=battle-117" _site/index.html
-          grep -q "v107_mobile_battle_columns.css?v=battle-117" _site/index.html
+          # Battle interface remains the restored v117 implementation, but cache-busted for phones.
+          grep -q "game.js?v=battle-120" _site/index.html
+          grep -q "v107_mobile_battle_columns.css?v=battle-120" _site/index.html
           grep -q 'battleMoveZone battleMoveZoneSplit' _site/game.js
           grep -q 'id="pokemonButton"' _site/game.js
           grep -q 'id="lastBallButton"' _site/game.js
+          ! grep -q 'id="studyButton"' _site/game.js
 
-          # Keep v118 route/interior fixes.
+          # Keep route/interior/trainer/door systems.
           grep -Fq "forestObstacleChance=areaId==='route2'?.32:.75" _site/classic_region_part2.js
-          grep -Fq "if(d<=3)tiles[y][x2]='path'" _site/classic_region_part2.js
-          grep -Fq "type:'sign',x:24,y:18" _site/classic_region_part2.js
-          grep -Fq "rect(x,y,27,14,33,14)" _site/v116_interiors.js
           grep -q "v118_mobile_ui.js?v=118-fixes" _site/index.html
-
-          # v119 is a visual exterior layer only.
-          grep -q "v119_living_world.js?v=living-world-119" _site/index.html
-          grep -q "V119_GiantTree" _site/v119_living_world.js
-          grep -q "V119_DenseGrass" _site/v119_living_world.js
-          grep -q "battles/music untouched" _site/v119_living_world.js
-
-          # v116 trainer/door systems remain present.
           grep -q "v116_trainers_runtime.js?v=116-final" _site/index.html
           grep -q "v116_world_visuals.js?v=116-final" _site/index.html
           grep -q "v116_doors.js?v=116-final" _site/index.html
           grep -q "v116_trainer_battle.js?v=116-final" _site/index.html
+
+          # v120 must load and force the opening map to rebuild immediately.
+          grep -q "v120_world_foundation.js?v=world-120" _site/index.html
+          grep -q "V120_RichGround" _site/v120_world_foundation.js
+          grep -q "V120_GiantTree" _site/v120_world_foundation.js
+          grep -q "V120_DenseTallGrass" _site/v120_world_foundation.js
+          grep -q "this.buildKey=''" _site/v120_world_foundation.js
           touch _site/.nojekyll
 
       - name: Configure Pages
