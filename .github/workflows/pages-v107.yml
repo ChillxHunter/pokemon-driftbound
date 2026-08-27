@@ -1,4 +1,4 @@
-name: Deploy Pokemon Driftbound v117 Battle Restore
+name: Deploy Pokemon Driftbound v118 World Fixes
 
 on:
   push:
@@ -11,7 +11,7 @@ permissions:
   id-token: write
 
 concurrency:
-  group: driftbound-v117-battle
+  group: driftbound-v118-world-fixes
   cancel-in-progress: true
 
 jobs:
@@ -21,7 +21,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Rebuild v117 site
+      - name: Rebuild v118 site
         shell: bash
         run: |
           set -euo pipefail
@@ -43,18 +43,42 @@ jobs:
           python3 deploy/apply_v115.py _site
           python3 deploy/apply_v116.py _site
           python3 deploy/apply_v117.py _site
+          python3 deploy/apply_v118.py _site
+
           node --check _site/game.js
+          node --check _site/classic_region_part2.js
+          node --check _site/v116_interiors.js
           node --check _site/v116_trainer_battle.js
-          python3 -m py_compile deploy/apply_v116.py deploy/apply_v117.py
+          node --check _site/v118_mobile_ui.js
+          python3 -m py_compile deploy/apply_v116.py deploy/apply_v117.py deploy/apply_v118.py
+
+          # Keep the restored battle interface from v117.
           grep -q "game.js?v=battle-117" _site/index.html
-          grep -q "v106_mobile_battle_layout.css?v=battle-117" _site/index.html
           grep -q "v107_mobile_battle_columns.css?v=battle-117" _site/index.html
           grep -q 'battleMoveZone battleMoveZoneSplit' _site/game.js
           grep -q 'id="pokemonButton"' _site/game.js
           grep -q 'id="lastBallButton"' _site/game.js
+
+          # v118 Route 2 + town-sign checks.
+          grep -Fq "forestObstacleChance=areaId==='route2'?.32:.75" _site/classic_region_part2.js
+          grep -Fq "if(d<=3)tiles[y][x2]='path'" _site/classic_region_part2.js
+          grep -Fq "type:'sign',x:24,y:18" _site/classic_region_part2.js
+
+          # v118 precise furniture collision checks.
+          grep -Fq "rect(x,y,27,14,33,14)" _site/v116_interiors.js
+          grep -Fq "rect(x,y,36,18,36,20)" _site/v116_interiors.js
+          grep -Fq "rect(x,y,23,19,25,19)" _site/v116_interiors.js
+
+          # Force phones to load the corrected route/interior scripts and keep
+          # the floating MENU button behind/away from modal panels.
+          grep -q "classic_region_part2.js?v=118-fixes" _site/index.html
+          grep -q "v116_interiors.js?v=118-fixes" _site/index.html
+          grep -q "v118_mobile_ui.js?v=118-fixes" _site/index.html
+          grep -q "db-v118-panel-open" _site/v118_mobile_ui.js
+
+          # v116 trainer/door systems must remain present.
           grep -q "v116_trainers_runtime.js?v=116-final" _site/index.html
           grep -q "v116_world_visuals.js?v=116-final" _site/index.html
-          grep -q "v116_interiors.js?v=116-final" _site/index.html
           grep -q "v116_doors.js?v=116-final" _site/index.html
           grep -q "v116_trainer_battle.js?v=116-final" _site/index.html
           touch _site/.nojekyll
