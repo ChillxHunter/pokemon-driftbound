@@ -1,0 +1,3 @@
+/* v116 scientist model part 4/4 */
+window.__DRIFTBOUND_TRAINER_DATA_V116__=window.__DRIFTBOUND_TRAINER_DATA_V116__||{};
+window.__DRIFTBOUND_TRAINER_DATA_V116__["scientist"]+="BX5HgodK5AO2/YDLMbB7xMLqWOiTUQGsTXbh7Q1SPiCtBt1pKAXmUqBPdcnFQ58PMvkuyWzXfKXra0YFcQZgKS4dTp80rvUa0BOFokE+zSXtXBcNb5LQ/wEIgYle7ykAAA==";
